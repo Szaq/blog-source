@@ -1,0 +1,16 @@
+baseurl = "http://spinaldevelopment.com/"
+languageCode = "en-us"
+title = "Spinal Coding"
+theme = "detox"
+PygmentsCodeFences = true
+builddrafts = false
+canonifyurls = true
+enableEmoji = false
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  description = "Spinal Develoment Coding Blog"
+  author = "Łukasz Kwoska"
