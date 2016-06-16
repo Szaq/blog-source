@@ -1,4 +1,4 @@
-baseurl = "http://szaq.github.io/"
+baseurl = "http://spinaldevelopment.com/"
 languageCode = "en-us"
 title = "Spinal Coding"
 theme = "detox"
@@ -6,6 +6,9 @@ PygmentsCodeFences = true
 builddrafts = false
 canonifyurls = true
 enableEmoji = false
+editor = "atom"
+disqusShortname = "Szaq"
+googleAnalytics = "UA-79477025-1"
 
 [taxonomies]
   category = "categories"
