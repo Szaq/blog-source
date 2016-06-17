@@ -10,20 +10,22 @@ categories = [
 tags = ["swift", "xcode", "rpath", "project", "otool"]
 +++
 
-Ever wanted to use swift to write your custom plugin for `XXX` and got dreaded:
+Ever wanted to use swift to write this super handy plugin for some application you use, or a system _Component_ and instead got dreaded:
 
 ```
 dlopen(TestFramework.framework/TestFramework, 5): Library not loaded: @rpath/libswiftAppKit.dylib
 ```
 <!--more-->
 
-This error happens because loader can't find swift libraries. But why is it so? Culprit of this error is `@rpath`.
+This error happens because loader can't find Swift libraries. But why is it so?
 
 ## @rpath
 
-Swift libraries are referenced using _run-paths_. They're described in apple [documentation](https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/RunpathDependentLibraries.html).
+Culprit of above error is `@rpath`.
 
-You can use `otool -L <Path_To_Binary>` to see that.
+Swift libraries are referenced using _run-paths_. Run-paths are described in apple [documentation](https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/RunpathDependentLibraries.html). They are the way for the application to load libraries from runtime-defined locations. Binary defines its `rpaths`.
+
+You can use `otool -L <Path_To_Binary>` to see Swift dependencies.
 You may get something similar to:
 ```
 /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox (compatibility version 1.0.0, current version 492.0.0)
@@ -42,8 +44,7 @@ You may get something similar to:
 	@rpath/libswiftFoundation.dylib (compatibility version 1.0.0, current version 703.0.18)
 	@rpath/libswiftObjectiveC.dylib (compatibility version 1.0.0, current version 703.0.18)
 ```
-
-It is the way for application to load libraries from runtime-defined locations. Locations to be searched are defined in Xcode using `Runpath Search Paths` settings.
+ Locations to be searched are defined in Xcode using `Runpath Search Paths` settings.
 
 ![Runpath Search Paths](/img/swift-in-nonswift-env-rpath.png)
 
@@ -56,6 +57,9 @@ Load command 24
       cmdsize 40
          path @loader_path/../Frameworks (offset 12)
 ```
+
+
+There are two solutions fixing missing Swift dependencies. Easy one and complex one. First solution should be used when possible, for it's a lot easier to implement. Second one should be used only if it is impossible to use first one.
 
 ## Solution 1 - Xcode setting
 To make swift frameworks visible to loader make sure the `Runpath Search Paths` setting is configured properly.
