@@ -10,11 +10,12 @@ categories = [
 tags = ["swift", "xcode", "rpath", "project", "otool"]
 +++
 
-# How to load swift binary in nonswift environment
 Ever wanted to use swift to write your custom plugin for `XXX` and got dreaded:
+
 ```
 dlopen(TestFramework.framework/TestFramework, 5): Library not loaded: @rpath/libswiftAppKit.dylib
 ```
+<!--more-->
 
 This error happens because loader can't find swift libraries. But why is it so? Culprit of this error is `@rpath`.
 
