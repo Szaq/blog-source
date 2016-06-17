@@ -7,8 +7,6 @@ builddrafts = false
 canonifyurls = true
 enableEmoji = false
 editor = "atom"
-disqusShortname = "Szaq"
-googleAnalytics = "UA-79477025-1"
 
 [taxonomies]
   category = "categories"
@@ -17,3 +15,5 @@ googleAnalytics = "UA-79477025-1"
 [params]
   description = "Spinal Develoment Coding Blog"
   author = "Łukasz Kwoska"
+  disqusShortname = "Szaq"
+  google_analytics = "UA-79477025-1"
